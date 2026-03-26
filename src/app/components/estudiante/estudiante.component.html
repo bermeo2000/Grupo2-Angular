@@ -1,0 +1,39 @@
+<div class="container">
+
+  <h2>Formulario de Estudiantes</h2>
+  <form (ngSubmit)="guardar()" class="form-estudiante">
+    <input type="text" [(ngModel)]="estudiante.nombres" name="nombres" placeholder="Nombres" required>
+    <input type="text" [(ngModel)]="estudiante.apellidos" name="apellidos" placeholder="Apellidos" required>
+    <input type="email" [(ngModel)]="estudiante.correo" name="correo" placeholder="Correo" required>
+    <div class="buttons">
+      <button type="submit" class="btn primary">{{ editando ? 'Actualizar' : 'Crear' }}</button>
+      <button type="button" class="btn secondary" (click)="resetear()">Limpiar</button>
+    </div>
+  </form>
+
+  <h2>Lista de Estudiantes</h2>
+  <table class="tabla-estudiantes">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let est of estudiantes">
+        <td>{{ est.id }}</td>
+        <td>{{ est.nombres }}</td>
+        <td>{{ est.apellidos }}</td>
+        <td>{{ est.correo }}</td>
+        <td class="acciones">
+          <button class="btn primary small" (click)="editar(est)">Editar</button>
+          <button class="btn danger small" (click)="eliminar(est.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
